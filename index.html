@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandOffers - Exclusive Promo Codes & Discounts</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #e74c3c;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/1200x400');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Offers Section */
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem 0.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .offer-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .brand-logo {
+            height: 100px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .brand-logo img {
+            max-height: 80px;
+            max-width: 80%;
+            object-fit: contain;
+        }
+        
+        .offer-info {
+            padding: 1.2rem;
+        }
+        
+        .brand-name {
+            color: #e74c3c;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .offer-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            min-height: 40px;
+        }
+        
+        .offer-details {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .promo-code {
+            background-color: #f8f8f8;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .copy-code {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+        
+        .offer-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .current-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .discount {
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        .valid-until {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 0.5rem;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: #bbb;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 5px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .newsletter-form button {
+                border-radius: 5px;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">Brand<span>Offers</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Top Offers</a></li>
+                    <li><a href="#">Brands</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Exclusive 50% Off on The Man Company Products</h1>
+            <p>Use promo code <strong>TMC50</strong> at checkout. Limited time offer on premium grooming products!</p>
+            <a href="#" class="btn">Get Offer Now</a>
+        </div>
+    </section>
+    
+    <div class="container">
+        <h2 class="section-title">Latest Brand Offers & Promo Codes</h2>
+        
+        <div class="filters">
+            <button class="filter-btn active">All Brands</button>
+            <button class="filter-btn">Grooming</button>
+            <button class="filter-btn">Electronics</button>
+            <button class="filter-btn">Fashion</button>
+            <button class="filter-btn">Beauty</button>
+        </div>
+        
+        <div class="offers-grid">
+            <!-- Offer 1 -->
+            <div class="offer-card">
+                <div class="brand-logo">
+                    <img src="https://via.placeholder.com/150x50?text=The+Man+Company" alt="The Man Company">
+                </div>
+                <div class="offer-info">
+                    <span class="brand-name">The Man Company</span>
+                    <h3 class="offer-title">40% Off on All Beard Care Kits</h3>
+                    <div class="offer-details">
+                        Get premium beard care products at discounted price. Applicable on all kits.
+                    </div>
+                    <div>
+                        <span class="promo-code">TMC40</span>
+                        <button class="copy-code">Copy</button>
+                    </div>
+                    <div class="offer-price">
+                        <span class="current-price">₹599</span>
+                        <span class="original-price">₹999</span>
+                        <span class="discount">40% OFF</span>
+                    </div>
+                    <div class="valid-until">Valid until: 30 Nov 2023</div>
+                    <a href="#" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <!-- Offer 2 -->
+            <div class="offer-card">
+                <div class="brand-logo">
+                    <img src="https://via.placeholder.com/150x50?text=Beardo" alt="Beardo">
+                </div>
+                <div class="offer-info">
+                    <span class="brand-name">Beardo</span>
+                    <h3 class="offer-title">Buy 1 Get 1 Free on Hair Wax</h3>
+                    <div class="offer-details">
+                        Get two hair wax products for the price of one. Limited stock available.
+                    </div>
+                    <div>
+                        <span class="promo-code">BEARDODBOGO</span>
+                        <button class="copy-code">Copy</button>
+                    </div>
+                    <div class="offer-price">
+                        <span class="current-price">₹349</span>
+                        <span class="original-price">₹698</span>
+                        <span class="discount">50% OFF</span>
+                    </div>
+                    <div class="valid-until">Valid until: 15 Dec 2023</div>
+                    <a href="#" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <!-- Offer 3 -->
+            <div class="offer-card">
+                <div class="brand-logo">
+                    <img src="https://via.placeholder.com/150x50?text=HP" alt="HP">
+                </div>
+                <div class="offer-info">
+                    <span class="brand-name">HP</span>
+                    <h3 class="offer-title">Extra ₹5000 Off on Laptops</h3>
+                    <div class="offer-details">
+                        Additional discount on select HP Pavilion and Envy series laptops.
+                    </div>
+                    <div>
+                        <span class="promo-code">HPEXTRA5K</span>
+                        <button class="copy-code">Copy</button>
+                    </div>
+                    <div class="offer-price">
+                        <span class="current-price">₹54,990</span>
+                        <span class="original-price">₹59,990</span>
+                        <span class="discount">EXTRA ₹5K OFF</span>
+                    </div>
+                    <div class="valid-until">Valid until: 31 Dec 2023</div>
+                    <a href="#" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <!-- Offer 4 -->
+            <div class="offer-card">
+                <div class="brand-logo">
+                    <img src="https://via.placeholder.com/150x50?text=Sony" alt="Sony">
+                </div>
+                <div class="offer-info">
+                    <span class="brand-name">Sony</span>
+                    <h3 class="offer-title">35% Off on Headphones</h3>
+                    <div class="offer-details">
+                        Special discount on WH-CH720N wireless noise cancelling headphones.
+                    </div>
+                    <div>
+                        <span class="promo-code">SONY35AUDIO</span>
+                        <button class="copy-code">Copy</button>
+                    </div>
+                    <div class="offer-price">
+                        <span class="current-price">₹9,749</span>
+                        <span class="original-price">₹14,990</span>
+                        <span class="discount">35% OFF</span>
+                    </div>
+                    <div class="valid-until">Valid until: 25 Nov 2023</div>
+                    <a href="#" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <!-- Offer 5 -->
+            <div class="offer-card">
+                <div class="brand-logo">
+                    <img src="https://via.placeholder.com/150x50?text=Pilgrim" alt="Pilgrim">
+                </div>
+                <div class="offer-info">
+                    <span class="brand-name">Pilgrim</span>
+                    <h3 class="offer-title">Flat ₹1000 Off on ₹1999+</h3>
+                    <div class="offer-details">
+                        Applies on all skincare and beauty products. Minimum order value ₹1999.
+                    </div>
+                    <div>
+                        <span class="promo-code">PILGRIM1000</span>
+                        <button class="copy-code">Copy</button>
+                    </div>
+                    <div class="offer-price">
+                        <span class="current-price">₹1,000 OFF</span>
+                        <span class="original-price">on ₹1,999+</span>
+                    </div>
+                    <div class="valid-until">Valid until: 10 Dec 2023</div>
+                    <a href="#" class="btn">Shop Now</a>
+                </div>
+            </div>
+            
+            <!-- Offer 6 -->
+            <div class="offer-card">
+                <div class="brand-logo">
+                    <img src="https://via.placeholder.com/150x50?text=Boat" alt="Boat">
+                </div>
+                <div class="offer-info">
+                    <span class="brand-name">Boat</span>
+                    <h3 class="offer-title">60% Off on Smart Watches</h3>
+                    <div class="offer-details">
+                        Special festive offer on select models of Boat smart watches.
+                    </div>
+                    <div>
+                        <span class="promo-code">BOAT60WATCH</span>
+                        <button class="copy-code">Copy</button>
+                    </div>
+                    <div class="offer-price">
+                        <span class="current-price">₹1,999</span>
+                        <span class="original-price">₹4,999</span>
+                        <span class="discount">60% OFF</span>
+                    </div>
+                    <div class="valid-until">Valid until: 30 Nov 2023</div>
+                    <a href="#" class="btn">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="newsletter">
+        <div class="container">
+            <h2>Get Exclusive Offers Directly!</h2>
+            <p>Subscribe to our newsletter and be the first to know about new promo codes and special discounts.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>&copy; 2023 BrandOffers. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // In a real implementation, you would filter the offers here
+                console.log(`Filtering by: ${this.textContent}`);
+            });
+        });
+        
+        // Copy promo code functionality
+        document.querySelectorAll('.copy-code').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const promoCode = this.previousElementSibling.textContent;
+                navigator.clipboard.writeText(promoCode).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
